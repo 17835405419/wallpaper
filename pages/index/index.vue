@@ -4,7 +4,7 @@
 
 <template>
 	<view class="home-layout">
-		<div class="banner-box">
+		<view class="banner-box">
 			<swiper indicator-dots :autoplay="true" :circular="true" :interval="2000" indicator-color="#c0c0c0"
 				indicator-active-color="#ffffff">
 				<swiper-item>
@@ -17,34 +17,37 @@
 					<image src="../../common/images/banner3.jpg" mode=""></image>
 				</swiper-item>
 			</swiper>
-		</div>
-		<div class="noticeLists-box">
-			<div class="left">
+		</view>
+		<view class="noticeLists-box">
+			<view class="left">
 				<uni-icons type="sound" size="24" color=" #2ba886"></uni-icons>
 				<text class="title">公告</text>
-			</div>
-			<div class="center">
+			</view>
+			<view class="center">
 				<swiper :autoplay="true" :interval="2000" :vertical="true">
 					<swiper-item v-for="item in 3">
 						<view class="notice-content">啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦</view>
 					</swiper-item>
 				</swiper>
-			</div>
-			<div class="right">
+			</view>
+			<view class="right">
 				<uni-icons type="right" size="21"></uni-icons>
-			</div>
-		</div>
+			</view>
+		</view>
 	
-		<div class="select">
+		<view class="select">
 			<CommonTitle>
 				<template #name>
 					每日推荐
 				</template>
 				<template  #theme>
-					<view>啦啦啦啦</view>
+					<view class="calendar">
+						<uni-icons type="calendar" size="24" 	color="#2ba886"></uni-icons>
+						<uni-dateformat class="time" :date="Date.now()" format="dd日"></uni-dateformat>
+					</view>
 				</template>
 			</CommonTitle>
-			<div class="scroll">
+			<view class="scroll">
 				<scroll-view scroll-x  :scroll-left="true">
 					<image src="../../common/images/preview_small.webp" mode="aspectFill" ></image>
 					<image src="../../common/images/preview1.jpg" mode=""></image>
@@ -53,9 +56,28 @@
 					<image src="../../common/images/preview1.jpg" mode=""></image>
 					<image src="../../common/images/preview2.jpg" mode=""></image>	
 				</scroll-view>
-			</div>
-		</div>
+			</view>
+		</view>
 	
+		<view class="special-sbject">
+			<CommonTitle>
+				<template #name>
+					专题精选
+				</template>
+				<template  #theme>
+					<navigator  class="more">
+						More+
+					</navigator>
+				</template>
+			</CommonTitle>
+			<view class="themeCard" >
+				<view class="item" v-for="item in 8">
+					<ThemeCard></ThemeCard>
+				</view>
+				<ThemeCard :isMore="true"></ThemeCard>
+			</view>
+			
+		</view>
 	</view>
 </template>
 
@@ -128,6 +150,18 @@
 		}
 
 	}
+	.select{
+		font-size:30rpx;
+		.calendar{
+			display: flex;
+			align-items: center;
+			color:#2ba886;
+			.time{
+				margin-left: 10rpx;
+			}
+		}
+		
+	}
 	.scroll{
 		white-space: nowrap;
 		padding-left: 30rpx;
@@ -144,4 +178,17 @@
 		}
 	
 	}
+	.special-sbject{
+		.more{
+			font-size: 36rpx;
+			color:#868686;
+		}
+		.themeCard{
+			padding: 30rpx;
+			display: grid;
+			gap: 15rpx;
+			grid-template-columns: repeat(3,1fr);
+		}
+	}
+
 </style>
