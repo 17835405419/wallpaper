@@ -3,7 +3,7 @@
 </script>
 
 <template>
-	<view class="home-layout">
+	<view class="home-layout pageBg">
 		<view class="banner-box">
 			<swiper indicator-dots :autoplay="true" :circular="true" :interval="2000" indicator-color="#c0c0c0"
 				indicator-active-color="#ffffff">
@@ -20,7 +20,7 @@
 		</view>
 		<view class="noticeLists-box">
 			<view class="left">
-				<uni-icons type="sound" size="24" color=" #2ba886"></uni-icons>
+				<uni-icons type="sound" size="24"></uni-icons>
 				<text class="title">公告</text>
 			</view>
 			<view class="center">
@@ -34,49 +34,49 @@
 				<uni-icons type="right" size="21"></uni-icons>
 			</view>
 		</view>
-	
+
 		<view class="select">
 			<CommonTitle>
 				<template #name>
 					每日推荐
 				</template>
-				<template  #theme>
+				<template #theme>
 					<view class="calendar">
-						<uni-icons type="calendar" size="24" 	color="#2ba886"></uni-icons>
+						<uni-icons type="calendar" size="24"></uni-icons>
 						<uni-dateformat class="time" :date="Date.now()" format="dd日"></uni-dateformat>
 					</view>
 				</template>
 			</CommonTitle>
 			<view class="scroll">
-				<scroll-view scroll-x  :scroll-left="true">
-					<image src="../../common/images/preview_small.webp" mode="aspectFill" ></image>
+				<scroll-view scroll-x>
+					<image src="../../common/images/preview_small.webp" mode="aspectFill"></image>
 					<image src="../../common/images/preview1.jpg" mode=""></image>
-					<image src="../../common/images/preview2.jpg" mode=""></image>	
+					<image src="../../common/images/preview2.jpg" mode=""></image>
 					<image src="../../common/images/preview_small.webp" mode=""></image>
 					<image src="../../common/images/preview1.jpg" mode=""></image>
-					<image src="../../common/images/preview2.jpg" mode=""></image>	
+					<image src="../../common/images/preview2.jpg" mode=""></image>
 				</scroll-view>
 			</view>
 		</view>
-	
+
 		<view class="special-sbject">
 			<CommonTitle>
 				<template #name>
 					专题精选
 				</template>
-				<template  #theme>
-					<navigator  class="more">
+				<template #theme>
+					<navigator class="more">
 						More+
 					</navigator>
 				</template>
 			</CommonTitle>
-			<view class="themeCard" >
+			<view class="themeCard">
 				<view class="item" v-for="item in 8">
 					<ThemeCard></ThemeCard>
 				</view>
 				<ThemeCard :isMore="true"></ThemeCard>
 			</view>
-			
+
 		</view>
 	</view>
 </template>
@@ -120,16 +120,22 @@
 			display: flex;
 			align-items: center;
 
+			:deep() {
+				.uni-icons {
+					color: $brand-theme-color !important;
+				}
+			}
+
 			.title {
 				font-weight: 800;
-				color: #2ba886;
+				color: $brand-theme-color;
 			}
 		}
 
 		.center {
 			flex: 1;
 			height: 100%;
-
+ 
 			swiper {
 				height: 100%;
 				padding: 0 30rpx;
@@ -139,56 +145,70 @@
 					display: flex;
 					align-items: center;
 					font-size: 24rpx;
-					.notice-content{
+
+					.notice-content {
 						white-space: nowrap;
 						overflow: hidden;
 						text-overflow: ellipsis;
 					}
-				
+
 				}
 			}
 		}
 
 	}
-	.select{
-		font-size:30rpx;
-		.calendar{
+
+	.select {
+		font-size: 30rpx;
+
+		.calendar {
 			display: flex;
 			align-items: center;
-			color:#2ba886;
-			.time{
+			color: $brand-theme-color;
+
+			:deep() {
+				.uni-icons {
+					color: $brand-theme-color !important;
+				}
+			}
+
+			.time {
 				margin-left: 10rpx;
 			}
 		}
-		
+
 	}
-	.scroll{
+
+	.scroll {
 		white-space: nowrap;
 		padding-left: 30rpx;
-		scroll-view{
-			image{
+
+		scroll-view {
+			image {
 				height: 442rpx;
 				width: 200rpx;
-				margin-right:15rpx;
+				margin-right: 15rpx;
 				border-radius: 15rpx;
-				&:last-child{
-					margin-right:30rpx;
+
+				&:last-child {
+					margin-right: 30rpx;
 				}
 			}
 		}
-	
-	}
-	.special-sbject{
-		.more{
-			font-size: 36rpx;
-			color:#868686;
-		}
-		.themeCard{
-			padding: 30rpx;
-			display: grid;
-			gap: 15rpx;
-			grid-template-columns: repeat(3,1fr);
-		}
+
 	}
 
+	.special-sbject {
+		.more {
+			font-size: 36rpx;
+			color:$text-font-color-3;
+		}
+
+		.themeCard {
+			padding: 0 30rpx;
+			display: grid;
+			gap: 15rpx;
+			grid-template-columns: repeat(3, 1fr);
+		}
+	}
 </style>
